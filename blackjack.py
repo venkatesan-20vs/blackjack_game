@@ -1,16 +1,33 @@
 import random
+cards = {
+    "Ace": 11,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "Jack": 10,
+    "Queen": 10,
+    "King": 10,
+}
 def deal_card():
-    cards = [ 11,2,3,4,5,6,7,8,9,10,10,10,10]
-    card = random.choice(cards)
+    card = random.choice(list(cards.keys()))
     return card
 
-def calculate_score(cards):
-    if sum(cards) == 21 and len(cards) == 2:
+def calculate_score(card_in_hand):
+    card = []
+    for i in card_in_hand:
+        card.append(cards[i])
+    if sum(card) == 21 and len(card) == 2:
         return 0
-    elif 11 in cards and sum(cards) > 21:
-        cards.remove(11)
-        cards.append(1)
-    return sum(cards)
+    elif 11 in cards and sum(card) > 21:
+        card.remove(11)
+        card.append(1)
+    return sum(card)
 
 def compare(user_score, computer_score):
     if user_score == computer_score:
